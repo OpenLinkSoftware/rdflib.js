@@ -1,7 +1,7 @@
 {
   "name": "rdflib",
   "description": "an RDF library for node.js. Suitable for client and server side.",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "engines": {
     "node": ">=6.0"
   },
@@ -50,7 +50,8 @@
     "diff": "^3.2.0",
     "dirty-chai": "^2.0.0",
     "fs-grep": "^0.0.5",
-    "mocha": "^3.4.2",
+    "jsdoc": "^3.5.5",
+    "mocha": "^5.2.0",
     "nock": "^9.0.13",
     "node-mkdirp": "0.0.1",
     "rimraf": "^2.6.1",
@@ -61,6 +62,7 @@
   "scripts": {
     "build": "babel src -d lib",
     "build:browser": "webpack --progress --colors",
+    "doc": "jsdoc -d doc README.md src/*.js",
     "prepare": "npm run build",
     "test": "npm run test:unit && npm run test:serialize",
     "test:clean": "rimraf tests/serialize/,*",
