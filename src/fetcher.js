@@ -25,6 +25,7 @@
  * To do:
  * Firing up a mail client for mid:  (message:) URLs
  */
+const IndexedFormula = require('./indexed-formula')
 const log = require('./log')
 const N3Parser = require('./n3parser')
 const NamedNode = require('./named-node')
@@ -37,7 +38,8 @@ const Util = require('./util')
 const serialize = require('./serialize')
 
 // This is a special fetch withich does OIDC auth, catching 401 errors
-const fetch = require('solid-auth-client').fetch
+const auth = require('solid-auth-client')
+const fetch = auth ? auth.fetch : (a, b) => window.fetch(a, b)
 
 const Parsable = {
   'text/n3': true,
@@ -425,7 +427,7 @@ class Fetcher {
   * @constructor
   */
   constructor (store, options = {}) {
-    this.store = store || new rdf.IndexedFormula()
+    this.store = store || new IndexedFormula()
     this.timeout = options.timeout || 30000
 
     this._fetch = options.fetch || fetch

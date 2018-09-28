@@ -65,14 +65,10 @@ function handleRDFType (formula, subj, pred, obj, why) {
   }
   return done // statement given is not needed if true
 }
-/** IndexedFormula
- *
+/**
+ * IndexedFormula
  */
- /**
- * @class
- */
-
-export default class IndexedFormula extends Formula { // IN future - allow pass array of statements to constructor
+class IndexedFormula extends Formula { // IN future - allow pass array of statements to constructor
   /**
    * @constructor
    * @param {Array<String>} features - What sort of autmatic processing to do? Array of string
@@ -252,9 +248,13 @@ export default class IndexedFormula extends Formula { // IN future - allow pass 
   }
 
   /**
-   * Adds a triple to the store.
-   * Returns the statement added
-   * (would it be better to return the original formula for chaining?)
+   * Adds a triple (quad) to the store.
+   *
+   * @param {Term} subject - The thing about which the fact a relationship is asserted
+   * @param {namedNode} predicate - The relationship which is asserted
+   * @param {Term} object - The object of the relationship, e.g. another thing or avalue
+   * @param {namedNode} why - The document in which the triple (S,P,O) was or will be stored on the web
+   * @returns {Statement} The statement added to the store
    */
   add (subj, pred, obj, why) {
     var i
@@ -834,5 +834,5 @@ export default class IndexedFormula extends Formula { // IN future - allow pass 
     return res
   }
 }
-
+module.exports = IndexedFormula
 IndexedFormula.handleRDFType = handleRDFType
