@@ -4,7 +4,7 @@
 ** 2010-08-08 TimBL folded in Kenny's WEBDAV
 ** 2010-12-07 TimBL addred local file write code
 */
-import IndexedFormula from './indexed-formula'
+const IndexedFormula = require('./indexed-formula')
 const docpart = require('./uri').docpart
 const Fetcher = require('./fetcher')
 const namedNode = require('./data-factory').namedNode
@@ -623,7 +623,8 @@ class UpdateManager {
    * successfully.
    *
    * Deletions, insertions may be undefined or single statements or lists or formulae
-   * (may contain bnodes which can be indirectly identified by a where clause)
+   * (may contain bnodes which can be indirectly identified by a where clause).
+   * The `why` property of each statement must be the same and give the web document to be updated
    *
    * @param deletions - Statement or statments to be deleted.
    * @param insertions - Statement or statements to be inserted
